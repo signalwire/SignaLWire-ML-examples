@@ -9,6 +9,6 @@ $ENV{SIGNALWIRE_NUMBER} = Phone number to place calls from
 
 
 post.cgi is used to receive the postPrompt data\
-laml-demom.cgi is a Compatiblity XML demo of AI\
+laml-demo.cgi is a Compatiblity XML demo of AI\
 swml-demo.cgi is a SWML example of AI\
 swaig-demo.cgi is the SignalWire AI Gateway example with three functions\
