@@ -1,7 +1,6 @@
 import json
 import yaml
 
-
 class SignalWireML:
 
     def __init__(self, args=None):
