@@ -47,7 +47,7 @@ if ($post_data->{function} eq "get_weather") {
     my $number = check_e164($post_data->{argument});
 
     if ( $number ) {
-	$swml->addApplication("main", { connect => { from => $ENV{SIGNALWIRE_NUMBER}, to => $number } });
+	$swml->addApplication("main", "connect", { from => "$ENV{SIGNALWIRE_NUMBER}", to => "$number" });
 	print $json->pretty->utf8->encode({ response => "The call has been placed. Re-introduce yourself and announce to the user they are talking to you again.", SWML => $swml->renderJSON(), action => 'hangup' });
     } else {
 	print $json->pretty->utf8->encode({ response => "Invalid phone number." });
