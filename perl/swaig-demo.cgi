@@ -3,15 +3,14 @@ use CGI;
 use JSON;
 use URL::Encode qw (url_encode);
 use LWP::Simple;
-use SignalWire::ML;
 
 my $q    = new CGI;
 my $json = JSON->new->allow_nonref;
 
 sub check_e164 {
     my $number = shift;
-    if ($number =~ /^\+?1?[0-9]{10}$/) {
-	return "+1$number";
+    if ($number =~ /^\+?1?([0-9]{10})$/) {
+	return "+1$1";
     } else {
 	return 0;
     }
@@ -43,15 +42,14 @@ if ($post_data->{function} eq "get_weather") {
     print $json->pretty->utf8->encode({
 	response => "<say-as interpret-as='time' format='hm12'>$jobj->{location}->{localtime}</say-as>" });
 } elsif ($post_data->{function} eq "place_call") {
-    my $swml = SignalWire::ML->new({version => '1.0.0' });
     my $number = check_e164($post_data->{argument});
 
     if ( $number ) {
-	$swml->addApplication("main", "connect", { from => "$ENV{SIGNALWIRE_NUMBER}", to => "$number" });
-	print $json->pretty->utf8->encode({ response => "The call has been placed. Re-introduce yourself and announce to the user they are talking to you again.", SWML => $swml->renderJSON(), action => 'hangup' });
+	print $json->pretty->utf8->encode({
+	    response => "The call has been placed. Re-introduce yourself and announce to the user they are talking to you again.",
+	    action => 'hangup',
+	    SWML => { sections => { main => [ { connect => { to=> "$number", from => "$ENV{SIGNALWIRE_NUMBER}" } } ] } } });
     } else {
 	print $json->pretty->utf8->encode({ response => "Invalid phone number." });
     }
 }
-
-
