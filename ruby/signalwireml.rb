@@ -107,6 +107,14 @@ class SignalWireML
     @_prompt.merge!(prompt)
   end
 
+  def SWAIGResponse(self, response)
+    if self['_content']['sections']
+      response['SWML'] = self['_content']
+    end
+
+    JSON.pretty_generate(response)
+  end
+
   def renderJSON
     JSON.pretty_generate(@_content)
   end

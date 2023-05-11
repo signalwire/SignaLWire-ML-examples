@@ -123,6 +123,16 @@ function SignalWireML:setAIprompt(prompt)
    end
 end
 
+function SWAIGResponse(self, response)
+   local jsonEncoder = json.encode
+
+   if self._content.sections then
+      response.SWML = self._content
+   end
+
+   return json.encode(response, {indent = true})
+end
+
 function SignalWireML:renderJSON()
    return json.encode(self._content, {indent = true})
 end

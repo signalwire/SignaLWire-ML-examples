@@ -89,6 +89,15 @@ class SignalWireML {
         }
     }
 
+    public function SWAIGResponse($self, $response) {
+
+        if (isset($self['_content']['sections'])) {
+            $response['SWML'] = $self['_content'];
+        }
+
+        return json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
     public function setAIprompt($prompt) {
         foreach ($prompt as $k => $v) {
             $this->_prompt[$k] = $v;
