@@ -24,11 +24,11 @@ class SignalWireML {
         $this->_prompt = [];
     }
 
-    public function addAIApplication($section) {
+    public function add_aiapplication($section) {
         $app = "ai";
         $args = [];
 
-        foreach (['postPrompt', 'voice', 'engine', 'postPromptURL', 'postPromptAuthUser', 'postPromptAuthPassword', 'languages', 'hints', 'params', 'prompt', 'SWAIG'] as $data) {
+        foreach (['post_prompt', 'voice', 'engine', 'post_prompt_url', 'post_prompt_auth_user', 'post_prompt_auth_password', 'languages', 'hints', 'params', 'prompt', 'SWAIG'] as $data) {
             if (isset($this->{"_$data"})) {
                 $args[$data] = $this->{"_$data"};
             }
@@ -37,53 +37,53 @@ class SignalWireML {
         $this->_content['sections'][$section][] = [$app => $args];
     }
 
-    public function addApplication($section, $app, $args) {
+    public function add_application($section, $app, $args) {
         $this->_content['sections'][$section][] = [$app => $args];
     }
 
-    public function setAIpostPromptURL($postprompt) {
+    public function set_aipost_prompt_url($postprompt) {
         foreach ($postprompt as $k => $v) {
             $this->{"_$k"} = $v;
         }
     }
 
-    public function setAIparams($params) {
+    public function set_aiparams($params) {
         $this->_params = $params;
     }
 
-    public function addAIparams($params) {
+    public function add_aiparams($params) {
         foreach ($params as $k => $v) {
             $this->_params[$k] = $v;
         }
     }
 
-    public function setAIhints(...$hints) {
+    public function set_aihints(...$hints) {
         $this->_hints = is_array($hints[0]) ? $hints[0] : $hints;
     }
 
-    public function addAIhints(...$hints) {
+    public function add_aihints(...$hints) {
         $this->_hints = array_unique(array_merge($this->_hints, $hints));
     }
 
-    public function addAISWAIGdefaults($SWAIG) {
+    public function add_aiswaigdefaults($SWAIG) {
         foreach ($SWAIG as $k => $v) {
             $this->_SWAIG['defaults'][$k] = $v;
         }
     }
 
-    public function addAISWAIGfunction($SWAIG) {
+    public function add_aiswaigfunction($SWAIG) {
         $this->_SWAIG['functions'][] = $SWAIG;
     }
 
-    public function addAIlanguage($language) {
+    public function add_ailanguage($language) {
         $this->_languages[] = $language;
     }
 
-    public function setAIlanguage($language) {
+    public function set_ailanguage($language) {
         $this->_languages = $language;
     }
 
-    public function setAIpostPrompt($postprompt) {
+    public function set_aipost_prompt($postprompt) {
         foreach ($postprompt as $k => $v) {
             $this->_postPrompt[$k] = $v;
         }
@@ -98,17 +98,17 @@ class SignalWireML {
         return json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    public function setAIprompt($prompt) {
+    public function set_aiprompt($prompt) {
         foreach ($prompt as $k => $v) {
             $this->_prompt[$k] = $v;
         }
     }
 
-    public function renderJSON() {
+    public function render_json() {
         return json_encode($this->_content, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    public function renderYAML() {
+    public function render_yaml() {
         return yaml_emit($this->_content, YAML_UTF8_ENCODING);
     }
 }

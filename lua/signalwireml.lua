@@ -34,12 +34,12 @@ function SignalWireML.new(args)
    return self
 end
 
-function SignalWireML:addAIApplication(section)
+function SignalWireML:add_aiapplication(section)
    local app = "ai"
    local args = {}
    
-   for _, data in ipairs({"postPrompt", "voice", "engine", "postPromptURL", "postPromptAuthUser",
-			  "postPromptAuthPassword", "languages", "hints", "params", "prompt", "SWAIG"}) do
+   for _, data in ipairs({"post_prompt", "voice", "engine", "post_prompt_url", "post_prompt_auth_user",
+			  "post_prompt_auth_password", "languages", "hints", "params", "prompt", "SWAIG"}) do
       if self["_" .. data] then
 	 args[data] = self["_" .. data]
       end
@@ -50,33 +50,33 @@ function SignalWireML:addAIApplication(section)
    table.insert(self._content.sections[section], {[app] = args})
 end
 
-function SignalWireML:addApplication(section, app, args)
+function SignalWireML:add_application(section, app, args)
    self._content.sections = self._content.sections or {}
    self._content.sections[section] = self._content.sections[section] or {}
    table.insert(self._content.sections[section], {[app] = args})
 end
 
-function SignalWireML:setAIpostPromptURL(postPrompt)
-   for k, v in pairs(postPrompt) do
+function SignalWireML:set_aipost_prompt_url(post_prompt)
+   for k, v in pairs(post_prompt) do
       self["_" .. k] = v
    end
 end
 
-function SignalWireML:setAIparams(params)
+function SignalWireML:set_aiparams(params)
    self._params = params
 end
 
-function SignalWireML:addAIparams(params)
+function SignalWireML:add_aiparams(params)
    for k, v in pairs(params) do
       self._params[k] = v
    end
 end
 
-function SignalWireML:setAIhints(...)
+function SignalWireML:set_aihints(...)
    self._hints = {...}
 end
 
-function SignalWireML:addAIhints(...)
+function SignalWireML:add_aihints(...)
    local hints = {...}
    local seen = {}
    for _, hint in ipairs(self._hints or {}) do
@@ -90,41 +90,41 @@ function SignalWireML:addAIhints(...)
    end
 end
 
-function SignalWireML:addAISWAIGdefaults(SWAIG)
+function SignalWireML:add_aiswaigdefaults(SWAIG)
    for k, v in pairs(SWAIG) do
       self._SWAIG.defaults[k] = v
    end
 end
 
-function SignalWireML:addAISWAIGfunction(SWAIG)
+function SignalWireML:add_aiswaigfunction(SWAIG)
    table.insert(self._SWAIG.functions, SWAIG)
 end
 
-function SignalWireML:addAIlanguage(language)
+function SignalWireML:add_ailanguage(language)
    self._languages = self._languages or {}
    if not table_contains(self._languages, language) then
       table.insert(self._languages, language)
    end
 end
 
-function SignalWireML:setAIlanguage(language)
+function SignalWireML:set_ailanguage(language)
    self._languages = {language}
 end
 
-function SignalWireML:setAIpostPrompt(postPrompt)
-   for k, v in pairs(postPrompt) do
+function SignalWireML:set_aipost_prompt(post_prompt)
+   for k, v in pairs(post_prompt) do
       self._postPrompt[k] = v
    end
 end
 
-function SignalWireML:setAIprompt(prompt)
+function SignalWireML:set_aiprompt(prompt)
    for k, v in pairs(prompt) do
       self._prompt[k] = v
    end
 end
 
 function SWAIGResponse(self, response)
-   local jsonEncoder = json.encode
+   local json_encoder = json.encode
 
    if self._content.sections then
       response.SWML = self._content
@@ -133,11 +133,11 @@ function SWAIGResponse(self, response)
    return json.encode(response, {indent = true})
 end
 
-function SignalWireML:renderJSON()
+function SignalWireML:render_json()
    return json.encode(self._content, {indent = true})
 end
 
-function SignalWireML:renderYAML()
+function SignalWireML:render_yaml()
    return yaml.dump({self._content})
 end
 

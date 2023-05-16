@@ -14,23 +14,23 @@ class SignalWireML {
     this._prompt={};
   }
 
-  addAIApplication(section) {
+  add_aiapplication(section) {
     const app = 'ai';
     const args = {};
 
     [
-      'postPrompt',
+      'post_prompt',
       'voice',
       'engine',
-      'postPromptURL',
-      'postPromptAuthUser',
-      'postPromptAuthPassword',
+      'post_prompt_url',
+      'post_prompt_auth_user',
+      'post_prompt_auth_password',
       'languages',
       'hints',
       'params',
       'prompt',
       'SWAIG'
-    ].forEach((data) => {
+    ].for_each((data) => {
       if (this[`_${data}`]) {
         args[data] = this[`_${data}`];
       }
@@ -38,72 +38,72 @@ class SignalWireML {
     (this._content.sections[section] ||= []).push({ [app]: args });
   }
 
-  addApplication(section, app, args) {
+  add_application(section, app, args) {
     (this._content.sections[section] ||= []).push({ [app]: args });
   }
 
-  setAIpostPromptURL(postprompt) {
-    Object.entries(postprompt).forEach(([k, v]) => {
+  set_aipost_prompt_url(postprompt) {
+    Object.entries(postprompt).for_each(([k, v]) => {
       this[`_${k}`] = v;
     });
   }
 
-  setAIparams(params) {
+  set_aiparams(params) {
     this._params = params;
   }
 
-  addAIparams(params) {
-    Object.entries(params).forEach(([k, v]) => {
+  add_aiparams(params) {
+    Object.entries(params).for_each(([k, v]) => {
       this._params[k] = v;
     });
   }
 
-  setAIhints(...hints) {
+  set_aihints(...hints) {
     this._hints = [...hints];
   }
 
-  addAIhints(...hints) {
+  add_aihints(...hints) {
     this._hints.push(...hints);
     this._hints = [...new Set(this._hints)];
   }
 
-  addAISWAIGdefaults(SWAIG) {
+  add_aiswaigdefaults(SWAIG) {
     for (const [k, v] of Object.entries(SWAIG)) {
       this._SWAIG.defaults[k] = v;
     }
   }
     
-  addAISWAIGfunction(SWAIG) {
+  add_aiswaigfunction(SWAIG) {
     this._SWAIG.functions.push(SWAIG);
   }
 
-  addAIlanguage(language) {
+  add_ailanguage(language) {
     this._languages.push(language);
   }
 
-  setAIlanguage(language) {
+  set_ailanguage(language) {
     this._languages = [language];
   }
 
-  setAIpostPrompt(postprompt) {
-    Object.entries(postprompt).forEach(([k, v]) => {
+  set_aipost_prompt(postprompt) {
+    Object.entries(postprompt).for_each(([k, v]) => {
       this._postPrompt[k] = v;
     });
   }
 
-  setAIprompt(prompt) {
-    Object.entries(prompt).forEach(([k, v]) => {
+  set_aiprompt(prompt) {
+    Object.entries(prompt).for_each(([k, v]) => {
       this._prompt[k] = v;
     });
   }
 
-  renderJSON() {
+  render_json() {
 
     console.log(this._content);
     return JSON.stringify(this._content);
   }
 
-  renderYAML() {
+  render_yaml() {
     // `json-bigint` module doesn't support YAML conversion, so we'll use the native YAML library
     const YAML = require('js-yaml');
     return YAML.dump(this._content);

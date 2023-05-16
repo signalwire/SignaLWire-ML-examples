@@ -25,17 +25,17 @@ class SignalWireML
     tbl.include?(value)
   end
 
-  def addAIApplication(section)
+  def add_aiapplication(section)
     app = 'ai'
     args = {}
 
     [
-      :postPrompt,
+      :post_prompt,
       :voice,
       :engine,
-      :postPromptURL,
-      :postPromptAuthUser,
-      :postPromptAuthPassword,
+      :post_prompt_url,
+      :post_prompt_auth_user,
+      :post_prompt_auth_password,
       :languages,
       :hints,
       :params,
@@ -50,29 +50,29 @@ class SignalWireML
     @_content[:sections][section].push({ app => args })
   end
 
-  def addApplication(section, app, args)
+  def add_application(section, app, args)
     @_content[:sections] ||= {}
     @_content[:sections][section] ||= []
     @_content[:sections][section].push({ app => args })
   end
 
-  def setAIpostPromptURL(post_prompt)
+  def set_aipost_prompt_url(post_prompt)
     post_prompt.each { |k, v| instance_variable_set("@_#{k}", v) }
   end
 
-  def setAIparams(params)
+  def set_aiparams(params)
     @_params = params
   end
 
-  def addAIparams(params)
+  def add_aiparams(params)
     @_params.merge!(params)
   end
 
-  def setAIhints(*hints)
+  def set_aihints(*hints)
     @_hints = hints
   end
 
-  def addAIhints(*hints)
+  def add_aihints(*hints)
     seen = Set.new(@_hints)
     hints.each do |hint|
       unless seen.include?(hint)
@@ -82,28 +82,28 @@ class SignalWireML
     end
   end
 
-  def addAISWAIGdefaults(swaig)
+  def add_aiswaigdefaults(swaig)
     @_swaig[:defaults].merge!(swaig)
   end
 
-  def addAISWAIGfunction(swaig)
+  def add_aiswaigfunction(swaig)
     @_swaig[:functions].push(swaig)
   end
 
-  def addAIlanguage(language)
+  def add_ailanguage(language)
     @_languages ||= []
     @_languages.push(language) unless SignalWireML.table_contains(@_languages, language)
   end
 
-  def setAIlanguage(language)
+  def set_ailanguage(language)
     @_languages = [language]
   end
 
-  def setAIpostPrompt(post_prompt)
+  def set_aipost_prompt(post_prompt)
     @_postPrompt.merge!(post_prompt)
   end
 
-  def setAIprompt(prompt)
+  def set_aiprompt(prompt)
     @_prompt.merge!(prompt)
   end
 
@@ -115,11 +115,11 @@ class SignalWireML
     JSON.pretty_generate(response)
   end
 
-  def renderJSON
+  def render_json
     JSON.pretty_generate(@_content)
   end
 
-  def renderYAML
+  def render_yaml
     YAML.dump(@_content)
   end
 end
