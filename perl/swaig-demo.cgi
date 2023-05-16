@@ -32,24 +32,24 @@ if ($post_data->{function} eq "get_weather") {
     my $weather = $json->decode(
 	get "https://api.weatherapi.com/v1/current.json?key=$ENV{WEATHERAPI}&q=$where&aqi=no");
 
-    print $swml->SWAIGResponse({ response => "The weather in $weather->{location}->{name} is $weather->{current}->{condition}->{text} $weather->{current}->{temp_f}F degrees." });
+    print $swml->swaig_response({ response => "The weather in $weather->{location}->{name} is $weather->{current}->{condition}->{text} $weather->{current}->{temp_f}F degrees." });
 } elsif ($post_data->{function} eq "get_world_time") {
     my $where = url_encode($post_data->{argument});
 
     my $jobj =  $json->decode(
 	get "http://api.weatherapi.com/v1/timezone.json?key=$ENV{WEATHERAPI}&q=$where");
 
-    print $swml->SWAIGResponse({
+    print $swml->swaig_response({
 	response => "<say-as interpret-as='time' format='hm12'>$jobj->{location}->{localtime}</say-as>" });
 } elsif ($post_data->{function} eq "place_call") {
     my $number = check_e164($post_data->{argument});
 
     if ( $number ) {
 	$swml->add_application("main", "connect",{ to => "$number", from=> "$ENV{SIGNALWIRE_NUMBER}" });
-	print $swml->SWAIGResponse({
+	print $swml->swaig_response({
 	    response => "The call has been placed. Re-introduce yourself and announce to the user they are talking to you again.",
 	    action => 'hangup'});
     } else {
-	print $swml->SWAIGResponse({ response => "Invalid phone number.", action => 'hangup' });
+	print $swml->swaig_response({ response => "Invalid phone number.", action => 'hangup' });
     }
 }
