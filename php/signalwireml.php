@@ -89,7 +89,7 @@ class SignalWireML {
         }
     }
 
-    public function SWAIGResponse($self, $response) {
+    public function swaig_response($self, $response) {
 
         if (isset($self['_content']['sections'])) {
             $response['SWML'] = $self['_content'];

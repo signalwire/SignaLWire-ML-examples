@@ -107,7 +107,7 @@ class SignalWireML
     @_prompt.merge!(prompt)
   end
 
-  def SWAIGResponse(self, response)
+  def swaig_response(self, response)
     if self['_content']['sections']
       response['SWML'] = self['_content']
     end
