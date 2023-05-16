@@ -9,7 +9,7 @@ print $q->header("text/xml");
 $sw->Response
     ->Connect
     ->AI({postPromptURL => $ENV{postPromptURL} })
-    ->Prompt({ topP => '0.8', temperature => '1.0'},
+    ->Prompt({ top_p => '0.8', temperature => '1.0'},
 	     "Your name is Olivia, You are able to lookup weather and time for various locations.")->parent
     ->postPrompt("Summarize the conversation")->parent
     ->Hints("hint,hint,hint")->parent

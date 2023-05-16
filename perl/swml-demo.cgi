@@ -11,7 +11,7 @@ my $swml = SignalWire::ML->new({version => '1.0.2', voice => 'en-GB-Neural2-F' }
 
 $swml->set_aiprompt({
     temperature => "0.9",
-    topP => "1.0",
+    top_p => "1.0",
     text => "Your name is Olivia, You are able to lookup weather and time for various locations." });
 $swml->set_aipost_prompt({ text => "Summarize the conversation" });
 
