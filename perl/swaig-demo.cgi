@@ -45,7 +45,7 @@ if ($post_data->{function} eq "get_weather") {
     my $number = check_e164($post_data->{argument});
 
     if ( $number ) {
-	$swml->addApplication("main", "connect",{ to => "$number", from=> "$ENV{SIGNALWIRE_NUMBER}" });
+	$swml->add_application("main", "connect",{ to => "$number", from=> "$ENV{SIGNALWIRE_NUMBER}" });
 	print $swml->SWAIGResponse({
 	    response => "The call has been placed. Re-introduce yourself and announce to the user they are talking to you again.",
 	    action => 'hangup'});

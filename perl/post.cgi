@@ -13,7 +13,7 @@ my $json_text = $q->param( 'POSTDATA' );
 
 if ($json_text) {
     my $post_data = $json->decode( $json_text );
-    my $app_name  = $post_data->{"appName"};
+    my $app_name  = $post_data->{"app_name"};
     $app_name     =~ s/[^\w\d\-]//g;
     my $uuid      = uuid();
 
