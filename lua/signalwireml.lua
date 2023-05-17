@@ -1,5 +1,5 @@
 local json = require("dkjson")
-local yaml = require("lyaml")
+local yaml = require("yaml")
 
 local function table_contains(tbl, value)
    for _, v in ipairs(tbl) do
@@ -90,13 +90,13 @@ function SignalWireML:add_aihints(...)
    end
 end
 
-function SignalWireML:add_aiswaigdefaults(SWAIG)
+function SignalWireML:add_aiswaig_defaults(SWAIG)
    for k, v in pairs(SWAIG) do
       self._SWAIG.defaults[k] = v
    end
 end
 
-function SignalWireML:add_aiswaigfunction(SWAIG)
+function SignalWireML:add_aiswaig_function(SWAIG)
    table.insert(self._SWAIG.functions, SWAIG)
 end
 
@@ -123,7 +123,7 @@ function SignalWireML:set_aiprompt(prompt)
    end
 end
 
-function SignalWireML:swaig_response(self, response)
+function SignalWireML:swaig_response(response)
    local json_encoder = json.encode
 
    if self._content.sections then
