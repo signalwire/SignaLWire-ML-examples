@@ -65,13 +65,13 @@ class SignalWireML {
         $this->_hints = array_unique(array_merge($this->_hints, $hints));
     }
 
-    public function add_aiswaigdefaults($SWAIG) {
+    public function add_aiswaig_defaults($SWAIG) {
         foreach ($SWAIG as $k => $v) {
             $this->_SWAIG['defaults'][$k] = $v;
         }
     }
 
-    public function add_aiswaigfunction($SWAIG) {
+    public function add_aiswaig_function($SWAIG) {
         $this->_SWAIG['functions'][] = $SWAIG;
     }
 
