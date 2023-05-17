@@ -123,7 +123,7 @@ function SignalWireML:set_aiprompt(prompt)
    end
 end
 
-function swaig_response(self, response)
+function SignalWireML:swaig_response(self, response)
    local json_encoder = json.encode
 
    if self._content.sections then
