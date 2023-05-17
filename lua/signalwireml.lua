@@ -29,7 +29,7 @@ function SignalWireML.new(args)
    }
    self._params = {}
    self._prompt = {}
-   self._postPrompt = {}
+   self._post_prompt = {}
    self._hints = {}
    return self
 end
@@ -113,7 +113,7 @@ end
 
 function SignalWireML:set_aipost_prompt(post_prompt)
    for k, v in pairs(post_prompt) do
-      self._postPrompt[k] = v
+      self._post_prompt[k] = v
    end
 end
 
