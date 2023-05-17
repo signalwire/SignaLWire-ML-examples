@@ -67,13 +67,13 @@ class SignalWireML {
     this._hints = [...new Set(this._hints)];
   }
 
-  add_aiswaigdefaults(SWAIG) {
+  add_aiswaig_defaults(SWAIG) {
     for (const [k, v] of Object.entries(SWAIG)) {
       this._SWAIG.defaults[k] = v;
     }
   }
     
-  add_aiswaigfunction(SWAIG) {
+  add_aiswaig_function(SWAIG) {
     this._SWAIG.functions.push(SWAIG);
   }
 
