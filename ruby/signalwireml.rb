@@ -82,11 +82,11 @@ class SignalWireML
     end
   end
 
-  def add_aiswaigdefaults(swaig)
+  def add_aiswaig_defaults(swaig)
     @_swaig[:defaults].merge!(swaig)
   end
 
-  def add_aiswaigfunction(swaig)
+  def add_aiswaig_function(swaig)
     @_swaig[:functions].push(swaig)
   end
 
@@ -107,7 +107,7 @@ class SignalWireML
     @_prompt.merge!(prompt)
   end
 
-  def swaig_response(self, response)
+  def swaig_response(response)
     if self['_content']['sections']
       response['SWML'] = self['_content']
     end
