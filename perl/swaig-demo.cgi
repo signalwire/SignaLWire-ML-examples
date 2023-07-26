@@ -7,7 +7,7 @@ use SignalWire::ML;
 
 my $q    = new CGI;
 my $json = JSON->new->allow_nonref;
-my $swml = SignalWire::ML->new({version => '1.0.1', voice => 'en-US-Neural2-J' });
+my $swml = SignalWire::ML->new({version => '1.0.0', voice => 'en-US-Neural2-J' });
 
 sub check_e164 {
     my $number = shift;
