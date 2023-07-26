@@ -237,7 +237,7 @@ class SignalWireML {
   }
 
   public render_yaml(): string {
-    // Implement the function to convert the content to YAML format (not included in the provided LUA code)
+    // Implement the function to convert the content to YAML format
     // You can use libraries like 'js-yaml' to achieve this.
     return 'Implement render_yaml() function to convert content to YAML';
   }
