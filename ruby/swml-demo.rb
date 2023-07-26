@@ -74,3 +74,7 @@ puts json_output
 yaml_output = swml.render_yaml
 puts "\nYAML output:"
 puts yaml_output
+
+raw_output = swml.render
+puts "\nRaw output:"
+puts raw_output
