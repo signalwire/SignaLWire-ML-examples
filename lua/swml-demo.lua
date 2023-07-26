@@ -72,3 +72,7 @@ print(json_output)
 local yaml_output = swml:render_yaml()
 print("\nYAML output:")
 print(yaml_output)
+
+local raw_output = swml:render()
+print("\nRaw output:")
+print(raw_output)
