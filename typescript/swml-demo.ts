@@ -67,6 +67,7 @@ swml.add_aiinclude({
 swml.add_ainativefunction('check_time');
 swml.add_ainativefunction('wait_seconds');
 
+swml.add_aipronounce({ replace: 'signalwire', with: 'signal wire', ignore_case: 'true' })
 
 swml.add_aiapplication("main");
 
