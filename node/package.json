@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
+    "js-yaml": "^4.1.0",
     "json": "^11.0.0",
     "json-bigint": "^1.0.0",
     "yaml": "^2.2.2"
