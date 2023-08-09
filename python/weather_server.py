@@ -35,7 +35,7 @@ class MyCGIHandler(CGIHTTPRequestHandler):
 
         if post_data['function'] == "get_weather":
             where = urllib.parse.urlencode({'q': post_data['argument']})
-            weather_response = requests.get(f"https://api.weatherapi.com/v1/current.json?key=b27d750e8db54449ae0163438231807&{where}&aqi=no")
+            weather_response = requests.get(f"https://api.weatherapi.com/v1/current.json?key=<key>&{where}&aqi=no")
             weather_data = weather_response.json()
             response_text = f"The weather in {weather_data['location']['name']} is {weather_data['current']['condition']['text']} {weather_data['current']['temp_f']}F degrees."
             swml = SignalWireML()
