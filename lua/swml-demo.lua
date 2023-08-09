@@ -2,9 +2,7 @@ local SignalWireML = require("signalwireml")
 local swml = SignalWireML.new({})
 
 swml:add_ailanguage({ name = "English", code = "en-US", voice = "en-US-Neural2-F"} )
-swml:add_aiparams({smsFromNumber = '+19184588888'});
-swml:add_aiparams({languagesEnabled = 'true'});
-swml:add_aiparams({languageMode = 'normal'});
+swml:add_aiparams({languages_enable = 'true'});
 swml:set_aiprompt({ temperature = "0.9", top_p = "0.9", text = "You name is Franklin and you are an expert at Star Wars. Introduce yourself and see if I have any questions." } );
 swml:set_aipost_prompt({ text = "Please summarize the conversation." });
 swml:add_aihints("foo", "bar");
