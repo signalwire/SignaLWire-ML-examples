@@ -6,12 +6,6 @@
   // Add ailanguage
   swml.add_ailanguage({ name: "English", code: "en-US", voice: "en-US-Neural2-F" });
   
-  
-  // Add aiparams
-  swml.add_aiparams({ smsFromNumber: "+19184588888" });
-  swml.add_aiparams({ languagesEnabled: "true" });
-  swml.add_aiparams({ languageMode: "normal" });
-  
   // Set aiprompt
   swml.set_aiprompt({ temperature: "0.9", top_p: "0.9", text: "Your name is Franklin and you are an expert at Star Wars. Introduce yourself and see if I have any questions." });
   
