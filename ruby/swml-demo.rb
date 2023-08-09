@@ -2,9 +2,6 @@ require_relative 'signalwireml'
 swml = SignalWireML.new()
 
 swml.add_ailanguage({ name: 'English', code: 'en-US', voice: 'en-US-Neural2-F' })
-swml.add_aiparams({ sms_from_number: '+19184588888' })
-swml.add_aiparams({ languages_enabled: 'true' })
-swml.add_aiparams({ language_mode: 'normal' })
 swml.set_aiprompt({ temperature: '0.9', top_p: '0.9', text: 'You name is Franklin and you are an expert at Star Wars. Introduce yourself and see if I have any questions.' })
 swml.set_aipost_prompt({ text: 'Please summarize the conversation.' })
 swml.add_aihints('foo', 'bar', 'baz')
