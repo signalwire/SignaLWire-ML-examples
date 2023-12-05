@@ -1,7 +1,6 @@
 interface SignalWireMLContent {
   version: string;
   sections: { [section: string]: any[] };
-  engine: string;
 }
 
 interface SWAIGData {
@@ -37,11 +36,10 @@ class SignalWireML {
   private _post_prompt: any;
   private _hints: any[];
 
-  constructor(args: { version?: string; engine?: string; voice?: any }) {
+  constructor(args: { version?: string; voice?: any }) {
     this._content = {
       version: args.version || '1.0.0',
       sections: {},
-      engine: args.engine || 'gcloud',
     };
     this._voice = args.voice || null;
     this._languages = [];
