@@ -4,13 +4,14 @@
   "description": "Signalwire ML Example",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node dist/app.js",
+    "build": "tsc"
   },
-  "author": "",
+  "author": "NormB",
   "license": "MIT",
   "dependencies": {
+    "typescript": "^5.3.2",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "json": "^11.0.0"
+    "express": "^4.18.2"
   }
 }

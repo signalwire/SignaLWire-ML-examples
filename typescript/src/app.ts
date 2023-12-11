@@ -4,9 +4,8 @@ import express from 'express';
 import "dotenv/config";
 
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
-
-const FQDN = "example.signalwire.com";
-const PORT = 3000;
+const FQDN = process.env.FQDN;
+const PORT = process.env.PORT;
 
 const app = express();
 app.use(express.json());
@@ -45,10 +44,11 @@ app.post("/", async (req, res) => {
 
   const swml = new SignalWireML({ version: "1.0.0"});
 
-  swml.add_ailanguage({ name: "English", code: "en-US", voice: "en-US-Neural2-F" });
+  swml.add_ailanguage({ name: "English (US)", code: "en-US", voice: "en-US-Neural2-F", engine: "gcloud" });
 
-  swml.add_aiparams({ languages_enabled: 'false' });
-  swml.add_aiparams({ language_mode: 'normal' });
+  swml.add_aiparams({ local_tz: 'America/New_York' });
+  swml.add_aiparams({ ai_model: 'gpt-3.5-turbo' });
+  swml.add_aiparams({ end_of_speech_timeout: '1000' });
 
   swml.set_aiprompt({
     temperature: '0.3',
@@ -60,7 +60,7 @@ app.post("/", async (req, res) => {
     text:'Summarize the conversation'
   });
 
-  swml.set_aipost_prompt_url({post_prompt_url: `http://${FQDN}:${PORT}/post_prompt_url`});
+  swml.set_aipost_prompt_url(`http://${FQDN}:${PORT}/post_prompt_url`);
 
   swml.add_aiswaigfunction({
     "function": 'get_weather',
